@@ -1,0 +1,91 @@
+version: '3.9'
+
+volumes:
+  php-fpm-socket:
+  db-store:
+
+services:
+  web:
+    container_name: web
+    build: 
+      context: .
+      dockerfile: ./infra/docker/nginx/Dockerfile
+      args:
+        - GROUP_ID=${GROUP_ID}
+        - GROUP_NAME=${GROUP_NAME}
+        - USER_ID=${USER_ID}
+        - USER_NAME=${USER_NAME}
+    ports:
+      - target: 8080
+        published: ${WEB_PORT}
+        protocol: tcp
+        mode: host
+    volumes:
+      - type: volume
+        source: php-fpm-socket
+        target: /var/run/php-fpm
+      - type: bind
+        source: ./backend
+        target: /var/www/backend
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 500M
+
+  app:
+    container_name: app
+    build:
+      context: .
+      dockerfile: ./infra/docker/php/Dockerfile
+      args:
+        - GROUP_ID=${GROUP_ID}
+        - GROUP_NAME=${GROUP_NAME}
+        - USER_ID=${USER_ID}
+        - USER_NAME=${USER_NAME}
+    volumes:
+      - type: volume
+        source: php-fpm-socket
+        target: /var/run/php-fpm
+      - type: bind
+        source: ./backend
+        target: /var/www/backend
+    environment:
+      - DB_CONNECTION=mysql
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=${DB_NAME:-php_local}
+      - DB_USERNAME=${DB_USER:-phper}
+      - DB_PASSWORD=${DB_PASS:-secret}
+    depends_on:
+      - web
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1g
+
+  db:
+    container_name: db
+    build:
+      context: .
+      dockerfile: ./infra/docker/mysql/Dockerfile
+    ports:
+      - target: 3306
+        published: ${DB_PORT:-3306}
+        protocol: tcp
+        mode: host
+    volumes:
+      - type: volume
+        source: db-store
+        target: /var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=${DB_NAME:-php_local}
+      - MYSQL_USER=${DB_USER:-phper}
+      - MYSQL_PASSWORD=${DB_PASS:-secret}
+      - MYSQL_ROOT_PASSWORD=${DB_PASS:-secret}
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1.5g
