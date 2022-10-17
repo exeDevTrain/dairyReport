@@ -89,3 +89,21 @@ services:
         limits:
           cpus: '1'
           memory: 1.5g
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    restart: on-failure
+    depends_on:
+      - db
+    links:
+      - db
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=db #mysqlサービス名を指定
+      - PMA_USER=${DB_USER:-phper}
+      - PMA_PASSWORD=${DB_PASS:-secret}
+      - MSSQL_COLLATION=Japanese_CI_AS
+    ports:
+      - 4040:80
+
