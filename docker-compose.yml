@@ -92,7 +92,7 @@ services:
 
   phpmyadmin:
     container_name: phpmyadmin
-    image: phpmyadmin/phpmyadmin
+    image: phpmyadmin
     restart: on-failure
     depends_on:
       - db
@@ -105,5 +105,5 @@ services:
       - PMA_PASSWORD=${DB_PASS:-secret}
       - MSSQL_COLLATION=Japanese_CI_AS
     ports:
-      - 4040:80
+      - 4040:80 #phpMyAdmin(http://localhost:4040/)
 
