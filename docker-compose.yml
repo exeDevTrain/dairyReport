@@ -66,6 +66,7 @@ services:
           memory: 1g
 
   db:
+    platform: linux/amd64
     container_name: db
     build:
       context: .
