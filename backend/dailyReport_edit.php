@@ -83,7 +83,7 @@
 </table>
 
 <table class="table mb-4">
-  <thead>
+  <thead></thead>
     <tr>
       <th scope="col">日付</th>
       <th scope="col">始業</th>
