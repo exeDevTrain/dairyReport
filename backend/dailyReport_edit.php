@@ -23,18 +23,7 @@
 <div class="container">
 
 <div class="d-flex justify-content-center p-3 mt-4">
-  <h2>社員選択</h2>
-</div>
-
-<div class="d-flex justify-content-center mb-4">
-  <div class="col-md-3">
-  <select class="form-select">
-    <option selected>社員を選択してください</option>
-    <option value="1">1100007 佐藤えいじ</option>
-    <option value="2">1200001 山田花子</option>
-    <option value="3">1200034 田中太郎</option>
-  </select>
-  </div>
+  <h2>1200034 田中太郎</h2>
 </div>
 
 <div class="col d-flex justify-content-center">
