@@ -16,6 +16,7 @@
     <a href="./employees.php">社員一覧画面</a>
     <a href="./logic/daily_reports.php">日報一覧画面</a>
     <a href="./dailyReport_edit.php">日報編集画面</a>
+    <a href="./login.php">ログイン画面</a>
 </body>
 
 </html>
