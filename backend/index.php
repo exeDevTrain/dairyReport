@@ -18,6 +18,7 @@
     <a href="./dailyReport_edit.php">日報編集画面</a>
     <a href="./login.php">ログイン画面</a>
     <a href="./logut.php">ログアウト画面</a>
+    <a href="./register.php">新規登録画面</a>
 </body>
 
 </html>
