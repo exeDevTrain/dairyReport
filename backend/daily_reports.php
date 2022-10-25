@@ -1,4 +1,14 @@
+<?php
+use App\DailyReports\Controller\dailyReportsController;
 
+require_once('./App/DailyReports/Controller/dailyReportsController.php');
+
+$controller = new dailyReportsController;
+$data = $controller->getAll();
+
+$year_month = $data['year_month'];
+$dailyReports = $data['dailyReports'];
+?>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -10,53 +20,14 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <style>
-        html,
-        body {
-            height: 100%;
-        }
+    <link rel="stylesheet" href="./App/DailyReports/css/daily_Reports.css">
 
-        header {
-            height: 10%;
-        }
-
-        main {
-            height: 90%;
-        }
-        
-        .previous-btn {
-            background: transparent;
-            border: none;
-            color: #6c757d;
-            outline: none;
-        }
-        .next-btn {
-            background: transparent;
-            border: none;
-            color: #6c757d;
-            outline: none;
-        }
-    </style>
+    <script type="text/javascript" src="./App/DailyReports/js/daily_reports.js"></script>
     
-    <title>Document</title>
-
+    <title>日報一覧</title>
 </head>
 
 <body>
-
-<?php
-
-use App\DailyReports\Controller\dailyRepositoryController;
-
-require_once('./App/DailyReports/Controller/dailyRepositoryController.php');
-
-$controller = new dailyRepositoryController();
-$data = $controller->getAll();
-
-echo '<pre>';
-var_dump($data);
-echo '</pre>';
-?>
     <!-- ヘッダー -->
     <header class="p-3 bg-secondary text-white position-relative">
         <h1 class="position-absolute top-50 start-50 translate-middle">日報記録</h1>
@@ -73,7 +44,7 @@ echo '</pre>';
                     <div class="col d-flex justify-content-center align-items-center">
                         <button type="button" class="fs-2 previous-btn">&#9664;</button>
                         <h2 class="mx-5 mt-2">
-                            <strong><?php echo $yearAndMonth; ?></strong>
+                            <strong><?php echo $year_month; ?></strong>
                         </h2>
                         <button type="button" class="fs-2 next-btn">&#9654;</button>
                     </div>
@@ -93,7 +64,7 @@ echo '</pre>';
                     <tbody>
                         <?php foreach ($dailyReports as $dailyReport) : ?>
                             <tr>
-                                <th scope="row"><?php echo $dailyReport['dayAndDayOfWeek']; ?></th>
+                                <th scope="row"><?php echo $dailyReport['day_weekDay']; ?></th>
                                 <td><?php echo $dailyReport['startTime']; ?></td>
                                 <td><?php echo $dailyReport['endTime']; ?></td>
                                 <td><?php echo $dailyReport['breakTime']; ?></td>
@@ -112,24 +83,5 @@ echo '</pre>';
             </div>
         </div>
     </main>
-
-    <script>
-        const is_start = (obj) => {
-            if (obj.getAttribute('value') === "出勤") {
-                obj.setAttribute('value', "退勤");
-                return;
-            } 
-
-            if (obj.getAttribute('value') === "退勤") {
-                const is_end = () => confirm('退勤しますか?');
-                
-                if (!is_end()) return;
-
-                obj.setAttribute('value', "出勤");
-                return;
-            }
-        }
-    </script>
 </body>
-
 </html>

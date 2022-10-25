@@ -1,0 +1,25 @@
+html,
+body {
+    height: 100%;
+}
+
+header {
+    height: 10%;
+}
+
+main {
+    height: 90%;
+}
+
+.previous-btn {
+    background: transparent;
+    border: none;
+    color: #6c757d;
+    outline: none;
+}
+.next-btn {
+    background: transparent;
+    border: none;
+    color: #6c757d;
+    outline: none;
+}

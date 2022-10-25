@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
+namespace Common;
+
 final class ChangeDate
 {
     public function __construct(private string $timestamp)
-    {
-    }
+    {}
 
     private function chageYear(): string
     {
@@ -44,6 +45,6 @@ final class ChangeDate
 
     public function changeHourAndMinutes(): string
     {
-        return date('h:i', strtotime($this->timestamp));
+        return date('H:i', strtotime($this->timestamp));
     }
 }
