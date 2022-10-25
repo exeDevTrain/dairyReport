@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -41,10 +43,20 @@
 </head>
 
 <body>
-    <?php
-    require_once('./getDailyReports.php');
-    ?>
 
+<?php
+
+use App\DailyReports\Controller\dailyRepositoryController;
+
+require_once('./App/DailyReports/Controller/dailyRepositoryController.php');
+
+$controller = new dailyRepositoryController();
+$data = $controller->getAll();
+
+echo '<pre>';
+var_dump($data);
+echo '</pre>';
+?>
     <!-- ヘッダー -->
     <header class="p-3 bg-secondary text-white position-relative">
         <h1 class="position-absolute top-50 start-50 translate-middle">日報記録</h1>
