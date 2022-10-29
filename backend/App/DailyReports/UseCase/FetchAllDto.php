@@ -4,10 +4,10 @@ namespace App\DailyReports\UseCase;
 
 use App\DailyReports\Common\OutputDate;
 
-require_once(dirname(__FILE__) . './../Common/OutputDate.php');
+require_once(__DIR__ . './../Common/OutputDate.php');
 
 
-final class GetAllDto {
+final class FetchAllDto {
     public function __construct(private array $result)
     {}
 

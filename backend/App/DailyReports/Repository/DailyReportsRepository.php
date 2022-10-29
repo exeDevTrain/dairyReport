@@ -5,12 +5,12 @@ namespace App\DailyReports\Repository;
 
 use App\DailyReports\Config\ExecuteMySql;
 
-require_once(dirname(__FILE__) . '/../Config/ExecuteMySql.php');
+require_once(__DIR__ . '/../Config/ExecuteMySql.php');
 
 
 final class DailyReportsRepository {
 
-    public function getAll(): array
+    public function fetchAll(): array
     {
         $query = 'SELECT 
                     `id`,

@@ -2,17 +2,17 @@
 
 namespace App\DailyReports\Controller;
 
-use App\DailyReports\UseCase\GetAll;
+use App\DailyReports\UseCase\FetchAll;
 
 
-require_once(dirname(__FILE__) . './../UseCase/GetAll.php');
+require_once(__DIR__ . './../UseCase/Fetch.php');
 
 
 final class dailyReportsController {
-    public function getAll()
+    public function fetchAll()
     {
-        $getAll = new GetAll();
+        $fetchAll = new FetchAll();
 
-        return $getAll->execute();
+        return $fetchAll->execute();
     }
 }
