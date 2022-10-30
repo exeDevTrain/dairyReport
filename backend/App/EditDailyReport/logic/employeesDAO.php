@@ -1,5 +1,6 @@
 <?php
 
+// ■ 一社員の情報を取得
 function getEmployee($dbh, $employee_id) {
     try {
         $stmt1 = $dbh->prepare("SELECT id, employee_number, `name`, is_admin, delete_flag, created_at, updated_at
