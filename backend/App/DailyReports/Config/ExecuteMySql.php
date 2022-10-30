@@ -6,7 +6,7 @@ namespace App\DailyReports\Config;
 use App\DailyReports\Config\Connection;
 use PDO;
 
-require_once(dirname(__FILE__) . '/./Connection.php');
+require_once(__DIR__ . '/./Connection.php');
 
 
 final class ExecuteMySql extends Connection {

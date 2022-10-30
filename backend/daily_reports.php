@@ -4,7 +4,7 @@ use App\DailyReports\Controller\dailyReportsController;
 require_once('./App/DailyReports/Controller/dailyReportsController.php');
 
 $controller = new dailyReportsController;
-$data = $controller->getAll();
+$data = $controller->fetchAll();
 
 $year_month = $data['year_month'];
 $dailyReports = $data['dailyReports'];
