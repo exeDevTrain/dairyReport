@@ -5,7 +5,7 @@ function dbconnect() {
     $user = 'phper';
     $password = 'secret';
     
-    $dbh = new PDO ($dsn, $user, $password); //一般的な処理の範囲ならPDOで十分
+    $dbh = new PDO ($dsn, $user, $password);
     if (!$dbh) { //DB接続チェック
         echo "接続失敗: " . $e->getMessage() . "\n";
     }

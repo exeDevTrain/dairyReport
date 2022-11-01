@@ -33,4 +33,9 @@ function changeHourAndMinutes($timestamp): string {
     return date('H:i', strtotime($timestamp));
 }
 
+// aoshi追加
+// 「2022-10-15 09:30:00」から年月のみ抽出
+function removeTime($timestamp): string {
+    return substr($timestamp, 0, 10);
+}
 ?>
